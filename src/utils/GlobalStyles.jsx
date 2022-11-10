@@ -1,6 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
+      html {
+        box-sizing: border-box;
+        width: 100vw;
+        overflow-x: hidden;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
       body {
         color: gray;
         margin: 0;
@@ -41,16 +51,19 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0 auto;
         text-align: center;
       }
-      input {
-        width: 200px;
-        height: 20px;
-      }
-      button {
-        padding: 6px 15px;
-        border-radius: 30px;
-        border: none;
-        background-color: #d22566;
-        color: white;
-        font-weight: 700;
-      }
+
       `;
+
+// button {
+//   padding: 6px 15px;
+//   border-radius: 30px;
+//   border: none;
+//   background-color: #d22566;
+//   color: white;
+//   font-weight: 700;
+// }
+
+// input {
+//   width: 200px;
+//   height: 20px;
+// }
