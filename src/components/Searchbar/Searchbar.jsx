@@ -47,7 +47,7 @@ class Searchbar extends Component {
       <SearchbarHeader>
         <SearchForm className="form" onSubmit={this.handeSubmit}>
           <Button type="submit" className="button">
-            <ButtonLabel className="button-label">Search</ButtonLabel>
+            <ButtonLabel className="button-label">Go!</ButtonLabel>
           </Button>
 
           <Input

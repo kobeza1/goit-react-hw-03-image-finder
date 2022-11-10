@@ -21,7 +21,7 @@ export const SearchbarHeader = styled.header`
 
 export const Button = styled.button`
   display: inline-block;
-  width: 48px;
+  width: 100px;
   height: 48px;
   border: 0;
   background-size: 40%;
@@ -38,15 +38,13 @@ export const Button = styled.button`
 `;
 
 export const ButtonLabel = styled.span`
-  position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
-  overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  clip-path: inset(50%);
   border: 0;
+  font-size: 18px;
 `;
 
 export const SearchForm = styled.form`
