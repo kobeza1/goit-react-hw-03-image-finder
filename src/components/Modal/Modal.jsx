@@ -8,7 +8,7 @@ class Modal extends Component {
       largeImageURL: PropTypes.string.isRequired,
       user: PropTypes.string.isRequired,
     }),
-    closeModal: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
   };
   componentDidMount() {
     window.addEventListener('keydown', this.onCloseByEscape);
