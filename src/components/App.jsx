@@ -19,22 +19,24 @@ class App extends Component {
     currentImage: null,
   };
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     const { query, page } = this.state;
 
     if (prevState.query !== query) {
       this.getImages();
     }
-    if (prevState.page !== page) {
+    if (prevState.page !== page && page !== 1) {
       this.getMoreImages();
     }
   }
 
   onSubmit = query => {
-    this.setState({ query, page: 1 });
+    this.setState({ query: query, page: 1 });
   };
 
   getImages = async () => {
+    console.log('getImages');
+
     this.setState({ isLoading: true });
     const { page, query } = this.state;
 
@@ -43,9 +45,9 @@ class App extends Component {
         const {
           data: { hits },
         } = response;
-        if (hits.length === 0) {
-          return toast('There are no images');
-        }
+        // if (hits.length === 0) {
+        //   return toast('There are no images');
+        // }
         this.setState({
           images: [...propFilter(hits)],
         });
@@ -59,6 +61,7 @@ class App extends Component {
   };
 
   getMoreImages = async () => {
+    console.log('getMoreImages');
     this.setState({ isLoading: true });
     const { page, query } = this.state;
 
@@ -98,9 +101,10 @@ class App extends Component {
     return (
       <Container>
         <Searchbar onSubmit={this.onSubmit} />
+        <ImageGallery images={this.state.images} onClick={this.openModal} />
+
         {this.state.images.length !== 0 && (
           <>
-            <ImageGallery images={this.state.images} onClick={this.openModal} />
             <Button text="Load more" onClick={this.pageIncrement} />
           </>
         )}
