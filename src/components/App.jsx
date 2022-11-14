@@ -45,9 +45,9 @@ class App extends Component {
         const {
           data: { hits },
         } = response;
-        // if (hits.length === 0) {
-        //   return toast('There are no images');
-        // }
+        if (hits.length === 0) {
+          return toast('There are no images');
+        }
         this.setState({
           images: [...propFilter(hits)],
         });
