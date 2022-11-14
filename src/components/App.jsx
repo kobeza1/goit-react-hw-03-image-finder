@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from './Searchbar/Searchbar';
 import { fetchImages } from 'utils/api-service';
 import { propFilter } from 'utils/prop-filter';
@@ -17,7 +19,7 @@ class App extends Component {
     currentImage: null,
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const { query, page } = this.state;
 
     if (prevState.query !== query) {
@@ -28,8 +30,8 @@ class App extends Component {
     }
   }
 
-  handleQuery = query => {
-    this.setState({ query: query });
+  onSubmit = query => {
+    this.setState({ query, page: 1 });
   };
 
   getImages = async () => {
@@ -41,6 +43,9 @@ class App extends Component {
         const {
           data: { hits },
         } = response;
+        if (hits.length === 0) {
+          return toast('There are no images');
+        }
         this.setState({
           images: [...propFilter(hits)],
         });
@@ -92,10 +97,12 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <Searchbar onSubmit={this.handleQuery} />
-        <ImageGallery images={this.state.images} onClick={this.openModal} />
+        <Searchbar onSubmit={this.onSubmit} />
         {this.state.images.length !== 0 && (
-          <Button text="Load more" onClick={this.pageIncrement} />
+          <>
+            <ImageGallery images={this.state.images} onClick={this.openModal} />
+            <Button text="Load more" onClick={this.pageIncrement} />
+          </>
         )}
         {this.state.isLoading && <Loader />}
         {this.state.currentImage && (
@@ -104,6 +111,7 @@ class App extends Component {
             onClose={this.closeModal}
           />
         )}
+        <ToastContainer />
       </Container>
     );
   }

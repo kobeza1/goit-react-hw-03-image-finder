@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import React from 'react';
 import { LoadMore } from './Button.styled';
 
@@ -7,4 +9,9 @@ export const Button = ({ text, onClick }) => {
       {text}
     </LoadMore>
   );
+};
+
+Button.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func,
 };

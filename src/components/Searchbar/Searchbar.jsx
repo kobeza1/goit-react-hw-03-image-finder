@@ -60,7 +60,6 @@ class Searchbar extends Component {
             placeholder="Search images and photos"
           />
         </SearchForm>
-        <ToastContainer />
       </SearchbarHeader>
     );
   }
