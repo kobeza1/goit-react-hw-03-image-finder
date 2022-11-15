@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 
 export const CenterBox = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
 `;

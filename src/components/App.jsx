@@ -31,13 +31,10 @@ class App extends Component {
   }
 
   onSubmit = query => {
-    this.setState({ query: query, page: 1 });
+    this.setState({ query: query, page: 1, isLoading: true });
   };
 
   getImages = async () => {
-    console.log('getImages');
-
-    this.setState({ isLoading: true });
     const { page, query } = this.state;
 
     await fetchImages(page, query)
@@ -57,11 +54,11 @@ class App extends Component {
       })
       .finally(() => {
         this.setState({ isLoading: false });
+        console.log(this.state);
       });
   };
 
   getMoreImages = async () => {
-    console.log('getMoreImages');
     this.setState({ isLoading: true });
     const { page, query } = this.state;
 
@@ -79,12 +76,13 @@ class App extends Component {
       })
       .finally(() => {
         this.setState({ isLoading: false });
+        console.log(this.state);
       });
   };
 
   pageIncrement = () => {
     const { page } = this.state;
-    this.setState({ page: page + 1 });
+    this.setState({ page: page + 1, isLoading: true });
   };
 
   openModal = image => {
@@ -101,10 +99,9 @@ class App extends Component {
     return (
       <Container>
         <Searchbar onSubmit={this.onSubmit} />
-        <ImageGallery images={this.state.images} onClick={this.openModal} />
-
         {this.state.images.length !== 0 && (
           <>
+            <ImageGallery images={this.state.images} onClick={this.openModal} />
             <Button text="Load more" onClick={this.pageIncrement} />
           </>
         )}
