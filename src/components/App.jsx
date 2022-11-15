@@ -54,7 +54,6 @@ class App extends Component {
       })
       .finally(() => {
         this.setState({ isLoading: false });
-        console.log(this.state);
       });
   };
 
@@ -76,7 +75,6 @@ class App extends Component {
       })
       .finally(() => {
         this.setState({ isLoading: false });
-        console.log(this.state);
       });
   };
 
